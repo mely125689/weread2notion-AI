@@ -11,6 +11,9 @@ on:
     # GitHub Actions schedules use UTC.
     - cron: "0 20 * * *" # 每天北京时间凌晨 04:00
 
+env:
+  WEREAD_SKILL_VERSION: "1.0.5"
+
 jobs:
   sync:
     name: Sync
