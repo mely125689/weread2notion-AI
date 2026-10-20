@@ -93,10 +93,11 @@ def get_callout(content, icon=None):
             {
                 "type": "text",
                 "text": {
-                    "content": str(content)[:2000],
+                    "content": str(content)[offset : offset + 2000],
                 },
                 "annotations": {"color": "blue"},
             }
+            for offset in range(0, max(1, len(str(content))), 2000)
         ],
     }
     if icon:
