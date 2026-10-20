@@ -713,7 +713,11 @@ class Synchronizer:
                     abstract = item.get("abstract") or ""
                     content = item.get("content") or ""
                     text = (
-                        "\n\n".join(part for part in (abstract, content) if part)
+                        "\n\n".join(
+                            f"{label}：\n{part}"
+                            for label, part in (("引用原文", abstract), ("我的批注", content))
+                            if part
+                        )
                         or "想法"
                     )
                     blocks.append(get_callout(text, "💭"))
