@@ -462,10 +462,14 @@ class Synchronizer:
                 self.counts[database] += 1
                 changed_periods[kind].add(key)
             maps[kind][key] = page_id
+        linked_days = set()
         for row in period_rows:
             keys = period_keys(row["timestamp"])
+            if keys["day"] in linked_days:
+                continue
             if not any(keys[kind] in changed_periods[kind] for kind in maps):
                 continue
+            linked_days.add(keys["day"])
             day_id = maps["day"][keys["day"]]
             raw = {
                 "年": [maps["year"][keys["year"]]],
